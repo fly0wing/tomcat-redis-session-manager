@@ -1,13 +1,7 @@
 package com.orangefunction.tomcat.redissessions;
 
-import org.apache.catalina.Lifecycle;
-import org.apache.catalina.LifecycleException;
-import org.apache.catalina.LifecycleListener;
+import org.apache.catalina.*;
 import org.apache.catalina.util.LifecycleSupport;
-import org.apache.catalina.LifecycleState;
-import org.apache.catalina.Loader;
-import org.apache.catalina.Valve;
-import org.apache.catalina.Session;
 import org.apache.catalina.session.ManagerBase;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
@@ -725,7 +719,7 @@ public class RedisSessionManager extends ManagerBase implements Lifecycle {
     Loader loader = null;
 
     if (getContainer() != null) {
-      loader = getContainer().getLoader();
+      loader = ((Context)getContainer()).getLoader();
     }
 
     ClassLoader classLoader = null;
@@ -806,13 +800,13 @@ public class RedisSessionManager extends ManagerBase implements Lifecycle {
     this.connectionPoolConfig.setNumTestsPerEvictionRun(numTestsPerEvictionRun);
   }
 
-  public boolean getTestOnCreate() {
-    return this.connectionPoolConfig.getTestOnCreate();
-  }
-
-  public void setTestOnCreate(boolean testOnCreate) {
-    this.connectionPoolConfig.setTestOnCreate(testOnCreate);
-  }
+//  public boolean getTestOnCreate() {
+//    return this.connectionPoolConfig.getTestOnCreate();
+//  }
+//
+//  public void setTestOnCreate(boolean testOnCreate) {
+//    this.connectionPoolConfig.setTestOnCreate(testOnCreate);
+//  }
 
   public boolean getTestOnBorrow() {
     return this.connectionPoolConfig.getTestOnBorrow();
@@ -869,12 +863,12 @@ public class RedisSessionManager extends ManagerBase implements Lifecycle {
   public void setJmxEnabled(boolean jmxEnabled) {
     this.connectionPoolConfig.setJmxEnabled(jmxEnabled);
   }
-  public String getJmxNameBase() {
-    return this.connectionPoolConfig.getJmxNameBase();
-  }
-  public void setJmxNameBase(String jmxNameBase) {
-    this.connectionPoolConfig.setJmxNameBase(jmxNameBase);
-  }
+//  public String getJmxNameBase() {
+//    return this.connectionPoolConfig.getJmxNameBase();
+//  }
+//  public void setJmxNameBase(String jmxNameBase) {
+//    this.connectionPoolConfig.setJmxNameBase(jmxNameBase);
+//  }
 
   public String getJmxNamePrefix() {
     return this.connectionPoolConfig.getJmxNamePrefix();
